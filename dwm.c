@@ -459,7 +459,8 @@ buttonpress(XEvent *e)
                         updatedsblockssig(x);
                         click = ClkStatusText;
                 } else
-	} else if ((c = wintoclient(ev->window))) {
+                        return;
+  } else if ((c = wintoclient(ev->window))) {
 		focus(c);
 		restack(selmon);
 		XAllowEvents(dpy, ReplayPointer, CurrentTime);
