@@ -40,7 +40,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "", ""};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -83,7 +83,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -102,6 +102,8 @@ static const char *flameshotcmd[] = {"flameshot", "gui", NULL };
 static const char *mutecmd[] = { "/home/myuser/.config/dwm-scripts/volctl.sh", "toggle", NULL };
 static const char *volupcmd[] = { "/home/myuser/.config/dwm-scripts/volctl.sh", "2", NULL };
 static const char *voldowncmd[] = { "/home/myuser/.config/dwm-scripts/volctl.sh", "1", NULL };
+static const char *brightupcmd[] = {"xbacklight", "-inc", "5", NULL };
+static const char *brightdowncmd[] = {"xbacklight", "-dec", "5", NULL };
 
 #include "movestack.c"
 #include <X11/XF86keysym.h>
@@ -163,6 +165,9 @@ static Key keys[] = {
   { 0,                XF86XK_AudioMute,        spawn,        {.v = mutecmd } },
   { 0,                XF86XK_AudioLowerVolume, spawn,        {.v = voldowncmd } },
   { 0,                XF86XK_AudioRaiseVolume, spawn,        {.v = volupcmd } },
+// Adding brightness keys
+  { 0,                XF86XK_MonBrightnessUp,  spawn,        {.v = brightupcmd } },
+  { 0,                XF86XK_MonBrightnessDown, spawn,      {.v = brightdowncmd } },
 };
 
 /* button definitions */
