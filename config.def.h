@@ -48,12 +48,12 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      		instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     		NULL,       NULL,       0,            1,           -1 },
 	{ "firefox",  		NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "Minitube", 		NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "st",       		NULL,       NULL,       1 << 0,       0,           -1 },
 	{ "code-oss", 		NULL,		NULL,		1 << 6,		  0,		   -1 },
 	{ "Signal", 		NULL,		NULL,		1 << 5,		  0,		   -1 },
+	{ "nuclear", 		NULL,		NULL,		1 << 2,		  0,		   -1 },
 
 };
 
@@ -104,8 +104,15 @@ static const char *flameshotcmd[] = {"flameshot", "gui", NULL };
 static const char *mutecmd[] = { "/home/myuser/.config/dwm-scripts/volctl.sh", "toggle", NULL };
 static const char *volupcmd[] = { "/home/myuser/.config/dwm-scripts/volctl.sh", "2", NULL };
 static const char *voldowncmd[] = { "/home/myuser/.config/dwm-scripts/volctl.sh", "1", NULL };
+// brightness commands
 static const char *brightupcmd[] = {"xbacklight", "-inc", "5", NULL };
 static const char *brightdowncmd[] = {"xbacklight", "-dec", "5", NULL };
+static const char *kbdupcmd[] = {"keylight", "up", NULL };
+static const char *kbddowncmd[] = {"keylight", "down", NULL };
+//static const char *kbdupcmd[] = {"xbacklight", "-inc", "5", NULL };
+//static const char *kbddowncmd[] = {"xbacklight", "-dec", "5", NULL };
+
+
 
 #include "movestack.c"
 #include <X11/XF86keysym.h>
@@ -170,6 +177,8 @@ static Key keys[] = {
 // Adding brightness keys
   { 0,                XF86XK_MonBrightnessUp,  spawn,        {.v = brightupcmd } },
   { 0,                XF86XK_MonBrightnessDown, spawn,      {.v = brightdowncmd } },
+  { 0,                XF86XK_KbdBrightnessUp, spawn,      {.v = kbdupcmd } },
+  { 0,                XF86XK_KbdBrightnessDown, spawn,      {.v = kbddowncmd } },
 };
 
 /* button definitions */
