@@ -54,7 +54,7 @@ static const Rule rules[] = {
 	{ "code-oss", 		NULL,		NULL,		1 << 6,		  0,		   -1 },
 	{ "Signal", 		NULL,		NULL,		1 << 5,		  0,		   -1 },
 	{ "nuclear", 		NULL,		NULL,		1 << 2,		  0,		   -1 },
-
+	{ "Meld",		NULL,		NULL,		1 << 6,		  0,		   -1 },
 };
 
 /* layout(s) */
