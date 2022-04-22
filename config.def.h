@@ -113,6 +113,10 @@ static const char *flameshotcmd[] = {"flameshot", "gui", NULL };
 static const char *mutecmd[] = { "/home/myuser/.config/dwm-scripts/volctl.sh", "toggle", NULL };
 static const char *volupcmd[] = { "/home/myuser/.config/dwm-scripts/volctl.sh", "2", NULL };
 static const char *voldowncmd[] = { "/home/myuser/.config/dwm-scripts/volctl.sh", "1", NULL };
+/* Control Media Players */
+static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
+static const char *mednextcmd[] = { "playerctl", "next", NULL };
+static const char *medprevcmd[] = { "playerctl", "previous", NULL };
 // brightness commands
 static const char *brightupcmd[] = {"xbacklight", "-inc", "5", NULL };
 static const char *brightdowncmd[] = {"xbacklight", "-dec", "5", NULL };
@@ -183,6 +187,10 @@ static Key keys[] = {
   { 0,                XF86XK_AudioMute,        spawn,        {.v = mutecmd } },
   { 0,                XF86XK_AudioLowerVolume, spawn,        {.v = voldowncmd } },
   { 0,                XF86XK_AudioRaiseVolume, spawn,        {.v = volupcmd } },
+/* Keybindings for Media play/pause/next/previous */
+  { 0,		      XF86XK_AudioPlay,        spawn,        {.v = medplaypausecmd } },
+  { 0,                XF86XK_AudioNext,        spawn,        {.v = mednextcmd } },
+  { 0,                XF86XK_AudioPrev,        spawn,        {.v = medprevcmd } },
 // Adding brightness keys
   { 0,                XF86XK_MonBrightnessUp,  spawn,        {.v = brightupcmd } },
   { 0,                XF86XK_MonBrightnessDown, spawn,      {.v = brightdowncmd } },
