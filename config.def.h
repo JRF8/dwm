@@ -40,7 +40,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", ""};
+static const char *tags[] = { "", "", "", "", "", "", "", "", "?"};
 
 /* Lockfile */
 static char lockfile[] = "/tmp/dwm.lock";
@@ -110,9 +110,9 @@ static const char *dmenucmd[]    = { "dmenu_run", "-c", "-p", "Run: ", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *flameshotcmd[] = {"flameshot", "gui", NULL };
 // Audio Commands
-static const char *mutecmd[] = { "/home/myuser/.config/dwm-scripts/volctl.sh", "toggle", NULL };
-static const char *volupcmd[] = { "/home/myuser/.config/dwm-scripts/volctl.sh", "2", NULL };
-static const char *voldowncmd[] = { "/home/myuser/.config/dwm-scripts/volctl.sh", "1", NULL };
+static const char *mutecmd[] = { "/opt/dwm-scripts/volctl.sh", "toggle", NULL };
+static const char *volupcmd[] = { "/opt/dwm-scripts/volctl.sh", "2", NULL };
+static const char *voldowncmd[] = { "/opt/dwm-scripts/volctl.sh", "1", NULL };
 /* Control Media Players */
 static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
 static const char *mednextcmd[] = { "playerctl", "next", NULL };
