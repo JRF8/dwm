@@ -1699,6 +1699,8 @@ setup(void)
 	XChangeWindowAttributes(dpy, root, CWEventMask|CWCursor, &wa);
 	XSelectInput(dpy, root, wa.event_mask);
 	grabkeys();
+	// set default gaps upon launch
+	defaultgaps(0);
 	focus(NULL);
 }
 
