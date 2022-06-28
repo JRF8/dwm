@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 7;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
@@ -40,7 +40,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "?"};
+static const char *tags[] = { "", "", "", "", "", "", "", "", "?"};
 
 /* Lockfile */
 static char lockfile[] = "/tmp/dwm.lock";
@@ -62,7 +62,8 @@ static const Rule rules[] = {
 	{ "Surf",  		NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "Vertcoin-Qt",  		NULL,       NULL,       1 << 7,       0,           -1 },
 	{ "bisq.desktop.app.BisqApp",  		NULL,       NULL,       1 << 7,       0,           -1 },
-
+	{ "Gimp",  		NULL,       NULL,       1 << 6,       0,           -1 },
+	{ "Brave-browser",  		NULL,       NULL,       1 << 1,       0,           -1 },
 };
 
 /* layout(s) */
@@ -124,8 +125,8 @@ static const char *kbdupcmd[] = {"keylight", "up", NULL };
 static const char *kbddowncmd[] = {"keylight", "down", NULL };
 //static const char *kbdupcmd[] = {"xbacklight", "-inc", "5", NULL };
 //static const char *kbddowncmd[] = {"xbacklight", "-dec", "5", NULL };
-
-
+// slock key
+static const char *slockcmd[] = { "slock", NULL };
 
 #include "movestack.c"
 #include <X11/XF86keysym.h>
@@ -196,6 +197,8 @@ static Key keys[] = {
   { 0,                XF86XK_MonBrightnessDown, spawn,      {.v = brightdowncmd } },
   { 0,                XF86XK_KbdBrightnessUp, spawn,      {.v = kbdupcmd } },
   { 0,                XF86XK_KbdBrightnessDown, spawn,      {.v = kbddowncmd } },
+// Adding slock key
+  { MODKEY,	      XK_slash,		spawn,		  {.v = slockcmd } },
 };
 
 /* button definitions */
