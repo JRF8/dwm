@@ -111,7 +111,7 @@ static const char *dmenucmd[]    = { "dmenu_run", "-c", "-p", "Run: ", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *flameshotcmd[] = {"flameshot", "gui", NULL };
 // Audio Commands
-static const char *mutecmd[] = { "/opt/dwm-scripts/volctl.sh", "toggle", NULL };
+static const char *mutecmd[] = { "/opt/dwm-scripts/volctl.sh", "3", NULL };
 static const char *volupcmd[] = { "/opt/dwm-scripts/volctl.sh", "2", NULL };
 static const char *voldowncmd[] = { "/opt/dwm-scripts/volctl.sh", "1", NULL };
 /* Control Media Players */
