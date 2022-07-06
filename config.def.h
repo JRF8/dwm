@@ -40,7 +40,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "?"};
+static const char *tags[] = { "", "", "", "", "", "", "", "", "?"};
 
 /* Lockfile */
 static char lockfile[] = "/tmp/dwm.lock";
@@ -52,11 +52,13 @@ static const Rule rules[] = {
 	 */
 	/* class      		instance    title       tags mask     isfloating   monitor */
 	{ "firefox",  		NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "Chromium",  		NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "Minitube", 		NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "discord", 		NULL,       NULL,       1 << 5,       0,           -1 },
 	{ "st",       		NULL,       NULL,       1 << 0,       0,           -1 },
 	{ "code-oss", 		NULL,		NULL,		1 << 6,		  0,		   -1 },
 	{ "Signal", 		NULL,		NULL,		1 << 5,		  0,		   -1 },
-	{ "nuclear", 		NULL,		NULL,		1 << 2,		  0,		   -1 },
+	{ "nuclear", 		NULL,		NULL,		1 << 3,		  0,		   -1 },
 	{ "Meld",		NULL,		NULL,		1 << 6,		  0,		   -1 },
 	{ "org.remmina.Remmina", NULL,		NULL,		1 << 4,		  0,		   -1 },
 	{ "Surf",  		NULL,       NULL,       1 << 1,       0,           -1 },
@@ -64,6 +66,7 @@ static const Rule rules[] = {
 	{ "bisq.desktop.app.BisqApp",  		NULL,       NULL,       1 << 7,       0,           -1 },
 	{ "Gimp",  		NULL,       NULL,       1 << 6,       0,           -1 },
 	{ "Brave-browser",  		NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "KeePassXC",  		NULL,       NULL,       1 << 2,       0,           -1 },
 };
 
 /* layout(s) */
