@@ -126,6 +126,7 @@ static const char *brightupcmd[] = {"xbacklight", "-inc", "5", NULL };
 static const char *brightdowncmd[] = {"xbacklight", "-dec", "5", NULL };
 static const char *kbdupcmd[] = {"keylight", "up", NULL };
 static const char *kbddowncmd[] = {"keylight", "down", NULL };
+static const char *fnlkcmd[] = {"fnlockctl",  NULL };
 //static const char *kbdupcmd[] = {"xbacklight", "-inc", "5", NULL };
 //static const char *kbddowncmd[] = {"xbacklight", "-dec", "5", NULL };
 // slock key
@@ -202,6 +203,8 @@ static Key keys[] = {
   { 0,                XF86XK_KbdBrightnessDown, spawn,      {.v = kbddowncmd } },
 // Adding slock key
   { MODKEY,	      XK_slash,		spawn,		  {.v = slockcmd } },
+// Adding new Function lock key combination
+  { MODKEY|Mod1Mask,	      XK_f,		spawn,		  {.v = fnlkcmd } },
 };
 
 /* button definitions */
