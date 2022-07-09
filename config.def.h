@@ -45,12 +45,10 @@ typedef struct {
 } Sp;
 const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "lf", NULL };
-const char *spcmd3[] = {"keepassxc", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
 	{"splf",    spcmd2},
-	{"keepassxc",   spcmd3},
 };
 
 /* tagging */
@@ -84,7 +82,6 @@ static const Rule rules[] = {
 	{ "st-256color",  		"spotify-tui",       NULL,       1 << 3,      0,           -1 },
 	{ NULL,		  "spterm",		NULL,		SPTAG(0),		1,			 -1 },
 	{ NULL,		  "spfm",		NULL,		SPTAG(1),		1,			 -1 },
-	{ NULL,		  "keepassxc",	NULL,		SPTAG(2),		0,			 -1 },
 };
 
 /* layout(s) */
@@ -130,7 +127,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]    = { "dmenu_run", "-c", "-p", "Run: ", NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *flameshotcmd[] = {"flameshot", "gui", NULL };
+static const char *scrotclipcmd[] = {"/opt/dwm-scripts/scrotclip.sh", NULL };
 // Audio Commands
 static const char *mutecmd[] = { "/opt/dwm-scripts/volctl.sh", "3", NULL };
 static const char *volupcmd[] = { "/opt/dwm-scripts/volctl.sh", "2", NULL };
@@ -195,7 +192,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_g,      spawn,          {.v = flameshotcmd } },
+	{ MODKEY,                       XK_g,      spawn,          {.v = scrotclipcmd } },
 	TAGKEYS(                        XK_1,                      0)
 	{ MODKEY,            			XK_y,  	   togglescratch,  {.ui = 0 } },
 	{ MODKEY,            			XK_u,	   togglescratch,  {.ui = 1 } },
