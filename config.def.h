@@ -39,6 +39,20 @@ static const char *colors[][3]      = {
 	[SchemeSel]   = { col_gray4, col_cyan,  col_cyan  },
 };
 
+typedef struct {
+	const char *name;
+	const void *cmd;
+} Sp;
+const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
+const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "lf", NULL };
+const char *spcmd3[] = {"keepassxc", NULL };
+static Sp scratchpads[] = {
+	/* name          cmd  */
+	{"spterm",      spcmd1},
+	{"splf",    spcmd2},
+	{"keepassxc",   spcmd3},
+};
+
 /* tagging */
 static const char *tags[] = { "", "", "", "", "", "", "", "", "?"};
 
@@ -51,22 +65,26 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      		instance    title       tags mask     isfloating   monitor */
-	{ "firefox",  		NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "Chromium",  		NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "firefox",  		"Navigator",       NULL,       1 << 1,       0,           -1 },
+	{ "Chromium",  		"chromium",       NULL,       1 << 1,       0,           -1 },
 	{ "Minitube", 		NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "discord", 		NULL,       NULL,       1 << 5,       0,           -1 },
-	{ "st",       		NULL,       NULL,       1 << 0,       0,           -1 },
+	{ "st-256color",       		"st-256color",       NULL,       1 << 0,       0,           -1 },
 	{ "code-oss", 		NULL,		NULL,		1 << 6,		  0,		   -1 },
 	{ "Signal", 		NULL,		NULL,		1 << 5,		  0,		   -1 },
 	{ "nuclear", 		NULL,		NULL,		1 << 3,		  0,		   -1 },
 	{ "Meld",		NULL,		NULL,		1 << 6,		  0,		   -1 },
 	{ "org.remmina.Remmina", NULL,		NULL,		1 << 4,		  0,		   -1 },
-	{ "Surf",  		NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "Surf",  		"surf",       NULL,       1 << 1,       0,           -1 },
 	{ "Vertcoin-Qt",  		NULL,       NULL,       1 << 7,       0,           -1 },
 	{ "bisq.desktop.app.BisqApp",  		NULL,       NULL,       1 << 7,       0,           -1 },
 	{ "Gimp",  		NULL,       NULL,       1 << 6,       0,           -1 },
-	{ "Brave-browser",  		NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "Brave-browser",  		"brave-browser",       NULL,       1 << 1,       0,           -1 },
 	{ "KeePassXC",  		NULL,       NULL,       1 << 2,       0,           -1 },
+	{ "st-256color",  		"spotify-tui",       NULL,       1 << 3,      0,           -1 },
+	{ NULL,		  "spterm",		NULL,		SPTAG(0),		1,			 -1 },
+	{ NULL,		  "spfm",		NULL,		SPTAG(1),		1,			 -1 },
+	{ NULL,		  "keepassxc",	NULL,		SPTAG(2),		0,			 -1 },
 };
 
 /* layout(s) */
@@ -179,6 +197,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_g,      spawn,          {.v = flameshotcmd } },
 	TAGKEYS(                        XK_1,                      0)
+	{ MODKEY,            			XK_y,  	   togglescratch,  {.ui = 0 } },
+	{ MODKEY,            			XK_u,	   togglescratch,  {.ui = 1 } },
+	{ MODKEY,            			XK_x,	   togglescratch,  {.ui = 2 } },
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
@@ -219,7 +240,7 @@ static Button buttons[] = {
 	{ ClkStatusText,        0,              Button3,        sigdsblocks,    {.i = 3} },
   { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	{ ClkClientWin,         MODKEY,         Button3,       resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
