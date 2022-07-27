@@ -72,6 +72,7 @@ static const Rule rules[] = {
 	{ "Signal", 		NULL,		NULL,		1 << 5,		  0,		   -1 },
 	{ "nuclear", 		NULL,		NULL,		1 << 3,		  0,		   -1 },
 	{ "Meld",		NULL,		NULL,		1 << 6,		  0,		   -1 },
+	{ "Joplin",		NULL,		NULL,		1 << 6,		  0,		   -1 },
 	{ "org.remmina.Remmina", NULL,		NULL,		1 << 4,		  0,		   -1 },
 	{ "Surf",  		"surf",       NULL,       1 << 1,       0,           -1 },
 	{ "Vertcoin-Qt",  		NULL,       NULL,       1 << 7,       0,           -1 },
@@ -127,7 +128,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]    = { "dmenu_run", "-c", "-p", "Run: ", NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *scrotclipcmd[] = {"/opt/dwm-scripts/scrotclip.sh", NULL };
+static const char *scrotclipcmd[] = {"/opt/dwm-scripts/scrotclip.sh", "CLIP", NULL };
+static const char *scrotsavecmd[] = {"/opt/dwm-scripts/scrotclip.sh", "SAVE", NULL };
+static const char *scroteditcmd[] = {"/opt/dwm-scripts/scrotclip.sh", "EDIT", NULL };
 // Audio Commands
 static const char *mutecmd[] = { "/opt/dwm-scripts/volctl.sh", "3", NULL };
 static const char *volupcmd[] = { "/opt/dwm-scripts/volctl.sh", "2", NULL };
@@ -193,6 +196,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_g,      spawn,          {.v = scrotclipcmd } },
+	{ MODKEY|ShiftMask,             XK_g,      spawn,          {.v = scrotsavecmd } },
+	{ MODKEY|Mod1Mask,              XK_g,      spawn,          {.v = scroteditcmd } },
 	TAGKEYS(                        XK_1,                      0)
 	{ MODKEY,            			XK_y,  	   togglescratch,  {.ui = 0 } },
 	{ MODKEY,            			XK_u,	   togglescratch,  {.ui = 1 } },
