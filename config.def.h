@@ -1,23 +1,31 @@
 /* See LICENSE file for copyright and license details. */
 
+/* theme management */
+# include "theme_beg.h" /* this is a compile-time generated header file */
+# include "theme.h"
+
 /* appearance */
-static const unsigned int borderpx  = 7;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int borderpx  = DWM_BORDERPX;        /* border pixel of windows */
+static const unsigned int snap      = DWM_SNAP;            /* snap pixel */
 static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
-static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=16" };
-static const char dmenufont[]       = "monospace:size=16";
-static const char col_contrast[]        = "#fbf1c7";
-static const char col_white[]       = "#7c6f64";
+static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one
+window */
+static const int showbar            = DWM_SHOWBAR;         /* 0 means no bar */
+static const int topbar             = DWM_TOPBAR;          /* 0 means bottom bar */
+static const char *fonts[]          = DWM_FONT;
+static const char dmenufont[]       = "monospace:size=10";
+static const char col_gray1[]       = "#222222";
+static const char col_gray2[]       = "#444444";
+static const char col_gray3[]       = "#bbbbbb";
+static const char col_gray4[]       = "#eeeeee";
+static const char col_cyan[]        = "#005577";
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm]  = { col_white, col_contrast,  col_white  },
-	[SchemeSel] = { col_contrast, col_white, col_contrast },
+	/*               fg                 bg                 border   */
+	[SchemeNorm] = { DWM_FOREGROUND,    DWM_BACKGROUND,    DWM_BORDER },
+	[SchemeSel]  = { DWM_SELFOREGROUND, DWM_SELBACKGROUND, DWM_SELBORDER },
 };
 
 typedef struct {
@@ -133,6 +141,9 @@ static const char *slockcmd[] = { "slock", NULL };
 
 #include "movestack.c"
 #include <X11/XF86keysym.h>
+/* theme management */
+# include "theme_end.h" /* this is a compile-time generated header file */
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
