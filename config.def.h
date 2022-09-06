@@ -41,7 +41,7 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "?"};
+static const char *tags[] = { "", "", "", "", "", "", "", "", "?"};
 
 /* Lockfile */
 static char lockfile[] = "/tmp/dwm.lock";
@@ -55,6 +55,7 @@ static const Rule rules[] = {
 	{ "firefox",  		"Navigator",       NULL,       1 << 1,       0,           -1 },
 	{ "Chromium",  		"chromium",       NULL,       1 << 1,       0,           -1 },
 	{ "Minitube", 		NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "Freetube", 		NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "discord", 		NULL,       NULL,       1 << 5,       0,           -1 },
 	{ "st-256color",       		"st-256color",       NULL,       1 << 0,       0,           -1 },
 	{ "code-oss", 		NULL,		NULL,		1 << 6,		  0,		   -1 },
@@ -64,8 +65,10 @@ static const Rule rules[] = {
 	{ "Joplin",		NULL,		NULL,		1 << 6,		  0,		   -1 },
 	{ "org.remmina.Remmina", NULL,		NULL,		1 << 4,		  0,		   -1 },
 	{ "Surf",  		"surf",       NULL,       1 << 1,       0,           -1 },
-	{ "Vertcoin-Qt",  		NULL,       NULL,       1 << 7,       0,           -1 },
-	{ "bisq.desktop.app.BisqApp",  		NULL,       NULL,       1 << 7,       0,           -1 },
+	{ "Vertcoin-Qt",  		NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Lutris",  		NULL,       NULL,       1 << 7,       0,           -1 },
+	{ "explorer.exe",  		NULL,       NULL,       1 << 7,       0,           -1 },
+	{ "bisq.desktop.app.BisqApp",  		NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "Gimp",  		NULL,       NULL,       1 << 6,       0,           -1 },
 	{ "Brave-browser",  		"brave-browser",       NULL,       1 << 1,       0,           -1 },
 	{ "KeePassXC",  		NULL,       NULL,       1 << 2,       0,           -1 },
