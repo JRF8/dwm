@@ -67,6 +67,7 @@ static const Rule rules[] = {
 	{ "Surf",  		"surf",       NULL,       1 << 1,       0,           -1 },
 	{ "Vertcoin-Qt",  		NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "Lutris",  		NULL,       NULL,       1 << 7,       0,           -1 },
+	{ "Chiaki",  		NULL,       NULL,       1 << 7,       0,           -1 },
 	{ "explorer.exe",  		NULL,       NULL,       1 << 7,       0,           -1 },
 	{ "bisq.desktop.app.BisqApp",  		NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "Gimp",  		NULL,       NULL,       1 << 6,       0,           -1 },
