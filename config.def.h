@@ -11,17 +11,19 @@ static       int smartgaps          = 0;        /* 1 means no outer gap when the
 window */
 static const int showbar            = 1;         /* 0 means no bar */
 static const int topbar             = 1;          /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
-static const char *colors[][3]      = {
-	/*               fg                 bg                 border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+static char font[]            = "monospace:size=10";
+static char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { font };
+static char color0[]           = "#222222";
+static char color1[]       = "#444444";
+static char color2[]           = "#bbbbbb";
+static char color3[]            = "#eeeeee";
+static char color4[]        = "#005577";
+static char color5[]            = "#005577";
+static char *colors[][3] = {
+       /*               fg           bg           border   */
+       [SchemeNorm] = { color0, color1, color2 },
+       [SchemeSel]  = { color3,  color4,  color5  },
 };
 
 typedef struct {
@@ -76,9 +78,9 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static int nmaster     = 1;    /* number of clients in master area */
+static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
@@ -116,7 +118,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", color0, "-nf", color1, "-sb", color2, "-sf", color3, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *scrotclipcmd[] = {"/opt/dwm-scripts/scrotclip.sh", "CLIP", NULL };
 static const char *scrotsavecmd[] = {"/opt/dwm-scripts/scrotclip.sh", "SAVE", NULL };
@@ -143,6 +145,27 @@ static const char *slockcmd[] = { "slock", NULL };
 static const char *wallpapercmd[] = { "wallpaper", NULL };
 // power key
 static const char *powercmd[] = { "poweroptions", NULL};
+
+/*
+ * Xresources preferences to load at startup
+ */
+ResourcePref resources[] = {
+		{ "font",               STRING,  &font },
+		{ "dmenufont",          STRING,  &dmenufont },
+		{ "color0",        STRING,  &color0 },
+		{ "color1",    STRING,  &color1 },
+		{ "color2",        STRING,  &color2 },
+		{ "color3",         STRING,  &color3 },
+		{ "color4",     STRING,  &color4 },
+		{ "color5",         STRING,  &color5 },
+		{ "borderpx",          	INTEGER, &borderpx },
+		{ "snap",          		INTEGER, &snap },
+		{ "showbar",          	INTEGER, &showbar },
+		{ "topbar",          	INTEGER, &topbar },
+		{ "nmaster",          	INTEGER, &nmaster },
+		{ "resizehints",       	INTEGER, &resizehints },
+		{ "mfact",      	 	FLOAT,   &mfact },
+};
 
 #include "movestack.c"
 #include <X11/XF86keysym.h>
