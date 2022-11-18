@@ -56,6 +56,7 @@ static const Rule rules[] = {
 	{ "Chromium",  		"chromium",       NULL,       1 << 1,       0,           -1 },
 	{ "Minitube", 		NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Freetube", 		NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "mpv", 		NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "discord", 		NULL,       NULL,       1 << 5,       0,           -1 },
 	{ "st-256color",       		"st-256color",       NULL,       1 << 0,       0,           -1 },
 	{ "code-oss", 		NULL,		NULL,		1 << 6,		  0,		   -1 },
@@ -142,6 +143,10 @@ static const char *fnlkcmd[] = {"fnlockctl",  NULL };
 //static const char *kbddowncmd[] = {"xbacklight", "-dec", "5", NULL };
 // slock key
 static const char *slockcmd[] = { "slock", NULL };
+// wallpaper key
+static const char *wallpapercmd[] = { "wallpaper", NULL };
+// power key
+static const char *powercmd[] = { "poweroptions", NULL};
 
 #include "movestack.c"
 #include <X11/XF86keysym.h>
@@ -222,8 +227,12 @@ static Key keys[] = {
   { 0,                XF86XK_KbdBrightnessDown, spawn,      {.v = kbddowncmd } },
 // Adding slock key
   { MODKEY,	      XK_slash,		spawn,		  {.v = slockcmd } },
+// Adding wallpaper key
+  { MODKEY,	      XK_w,		spawn,		  {.v = wallpapercmd } },
 // Adding new Function lock key combination
   { MODKEY|Mod1Mask,	      XK_f,		spawn,		  {.v = fnlkcmd } },
+// Adding power functions
+  { 0,  XF86XK_PowerOff, spawn, { .v = powercmd } },
 };
 
 /* button definitions */
