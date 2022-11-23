@@ -1,5 +1,4 @@
 /* See LICENSE file for copyright and license details. */
-
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;            /* snap pixel */
@@ -23,7 +22,7 @@ static char color5[]            = "#005577";
 static char *colors[][3] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { color0, color1, color2 },
-       [SchemeSel]  = { color3,  color4,  color5  },
+       [SchemeSel]  = { color1,  color0,  color5  },
 };
 
 typedef struct {
@@ -56,7 +55,7 @@ static const Rule rules[] = {
 	{ "Freetube", 		NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "mpv", 		NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "discord", 		NULL,       NULL,       1 << 5,       0,           -1 },
-	{ "st-256color",       		"st-256color",       NULL,       1 << 0,       0,           -1 },
+	{ "St",       		"st",       NULL,       1 << 0,       0,           -1 },
 	{ "code-oss", 		NULL,		NULL,		1 << 6,		  0,		   -1 },
 	{ "Signal", 		NULL,		NULL,		1 << 5,		  0,		   -1 },
 	{ "nuclear", 		NULL,		NULL,		1 << 3,		  0,		   -1 },
@@ -118,7 +117,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", color0, "-nf", color1, "-sb", color2, "-sf", color3, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", color0, "-nf", color1, "-sb", color2, "-sf", color0, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *scrotclipcmd[] = {"/opt/dwm-scripts/scrotclip.sh", "CLIP", NULL };
 static const char *scrotsavecmd[] = {"/opt/dwm-scripts/scrotclip.sh", "SAVE", NULL };
@@ -145,7 +144,8 @@ static const char *slockcmd[] = { "slock", NULL };
 static const char *wallpapercmd[] = { "wallpaper", NULL };
 // power key
 static const char *powercmd[] = { "poweroptions", NULL};
-
+// resolution selection
+static const char *resolutioncmd[] = { "resolution", NULL};
 /*
  * Xresources preferences to load at startup
  */
@@ -250,6 +250,8 @@ static Key keys[] = {
   { MODKEY|Mod1Mask,	      XK_f,		spawn,		  {.v = fnlkcmd } },
 // Adding power functions
   { 0,  XF86XK_PowerOff, spawn, { .v = powercmd } },
+// Adding screen resolution selector
+  { MODKEY,       XK_r, spawn, {.v = resolutioncmd } },
 };
 
 /* button definitions */
