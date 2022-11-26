@@ -31,10 +31,12 @@ typedef struct {
 } Sp;
 const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "lf", NULL };
+const char *spcmd3[] = {"pavucontrol", NULL};
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
 	{"splf",    spcmd2},
+  {"pavucontrol", spcmd3},
 };
 
 /* tagging */
@@ -53,6 +55,7 @@ static const Rule rules[] = {
 	{ "Chromium",  		"chromium",       NULL,       1 << 1,       0,           -1 },
 	{ "Minitube", 		NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Freetube", 		NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "Kodi", 		NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "mpv", 		NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "discord", 		NULL,       NULL,       1 << 5,       0,           -1 },
 	{ "St",       		"st",       NULL,       1 << 0,       0,           -1 },
@@ -71,9 +74,10 @@ static const Rule rules[] = {
 	{ "Gimp",  		NULL,       NULL,       1 << 6,       0,           -1 },
 	{ "Brave-browser",  		"brave-browser",       NULL,       1 << 1,       0,           -1 },
 	{ "KeePassXC",  		NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "st-256color",  		"spotify-tui",       NULL,       1 << 3,      0,           -1 },
+	{ "St",  		"spotify-tui",       NULL,       1 << 3,      0,           -1 },
 	{ NULL,		  "spterm",		NULL,		SPTAG(0),		1,			 -1 },
 	{ NULL,		  "spfm",		NULL,		SPTAG(1),		1,			 -1 },
+  { NULL,     "pavucontrol", NULL,   SPTAG(2),   1,  -1 },
 };
 
 /* layout(s) */
@@ -119,13 +123,13 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", color0, "-nf", color1, "-sb", color2, "-sf", color0, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *scrotclipcmd[] = {"/opt/dwm-scripts/scrotclip.sh", "CLIP", NULL };
-static const char *scrotsavecmd[] = {"/opt/dwm-scripts/scrotclip.sh", "SAVE", NULL };
-static const char *scroteditcmd[] = {"/opt/dwm-scripts/scrotclip.sh", "EDIT", NULL };
+static const char *scrotclipcmd[] = {"scrotclip", "CLIP", NULL };
+static const char *scrotsavecmd[] = {"scrotclip", "SAVE", NULL };
+static const char *scroteditcmd[] = {"scrotclip", "EDIT", NULL };
 // Audio Commands
-static const char *mutecmd[] = { "/opt/dwm-scripts/volctl.sh", "3", NULL };
-static const char *volupcmd[] = { "/opt/dwm-scripts/volctl.sh", "2", NULL };
-static const char *voldowncmd[] = { "/opt/dwm-scripts/volctl.sh", "1", NULL };
+static const char *mutecmd[] = { "volctl", "3", NULL };
+static const char *volupcmd[] = { "volctl", "2", NULL };
+static const char *voldowncmd[] = { "volctl", "1", NULL };
 /* Control Media Players */
 static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
 static const char *mednextcmd[] = { "playerctl", "next", NULL };
