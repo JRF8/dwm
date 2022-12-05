@@ -124,7 +124,6 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *screenclipcmd[] = {"screenclip", "CLIP", NULL };
 static const char *screensavecmd[] = {"screenclip", "SAVE", NULL };
-static const char *screeneditcmd[] = {"screenclip", "EDIT", NULL };
 // Audio Commands
 static const char *mutecmd[] = { "volctl", "3", NULL };
 static const char *volupcmd[] = { "volctl", "2", NULL };
@@ -221,7 +220,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_g,      spawn,          {.v = screenclipcmd } },
 	{ MODKEY|ShiftMask,             XK_g,      spawn,          {.v = screensavecmd } },
-	{ MODKEY|Mod1Mask,              XK_g,      spawn,          {.v = screeneditcmd } },
 	TAGKEYS(                        XK_1,                      0)
 	{ MODKEY,            			XK_y,  	   togglescratch,  {.ui = 0 } },
 	{ MODKEY,            			XK_u,	   togglescratch,  {.ui = 1 } },
