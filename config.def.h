@@ -157,6 +157,8 @@ static const char *wallpapercmd[] = { "wallpaper", NULL };
 static const char *powercmd[] = { "poweroptions", NULL};
 // resolution selection
 static const char *resolutioncmd[] = { "resolution", NULL};
+// browser command
+static const char *browsercmd[] = { "chromium", NULL};
 /*
  * Xresources preferences to load at startup
  */
@@ -270,6 +272,8 @@ static const Key keys[] = {
   { 0,  XF86XK_PowerOff, spawn, { .v = powercmd } },
 // Adding screen resolution selector
   { MODKEY,       XK_r, spawn, {.v = resolutioncmd } },
+// Adding command to launch browser
+  { MODKEY,       XK_r, spawn, {.v = browsercmd } },
 };
 
 /* button definitions */
