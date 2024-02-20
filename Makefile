@@ -6,6 +6,8 @@ include config.mk
 SRC = drw.c dwm.c util.c
 OBJ = ${SRC:.c=.o}
 
+SCRIPTS=$(shell ls scripts)
+
 all: options dwm
 
 options:
@@ -43,9 +45,16 @@ install: all
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
+	for script in ${SCRIPTS}; do \
+		cp scripts/$$script ${DESTDIR}${PREFIX}/bin &&\
+		chmod 755 ${DESTDIR}${PREFIX}/bin/$$script; \
+		done
 
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwm\
 		${DESTDIR}${MANPREFIX}/man1/dwm.1
+	for script in ${SCRIPTS}; do \
+		rm ${DESTDIR}${PREFIX}/bin/$$script; \
+		done
 
 .PHONY: all options clean dist install uninstall

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+WALLDIR=$HOME/Wallpaper
+
+for i in $(ls $WALLDIR); do
+  cat $WALLDIR/.gruvconv.txt | grep $i > /dev/null
+  if [[ $(echo $?) == 0 ]]; then
+    :
+  else
+    echo "Converting $i...";
+    gruvbox-factory -i $WALLDIR/$i -p white;
+    mv "$WALLDIR/gruvbox_$i" "$WALLDIR/$i";
+    echo $i >> .gruvconv.txt;
+  fi
+done

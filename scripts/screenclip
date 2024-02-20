@@ -1,0 +1,10 @@
+#!/bin/sh
+if [ $1 == "SAVE" ]; then
+	DATETIME=$(date +"%Y-%m-%d_%H-%M-%S")
+	flameshot gui -p ~/Screenshots/$DATETIME.png
+elif [ $1 == "CLIP" ]; then
+	# calling flameshot instead
+	flameshot gui -p /tmp/temp.png
+	xclip -selection clipboard -in -target image/png < /tmp/temp.png
+	rm /tmp/temp.png
+fi

@@ -1,0 +1,45 @@
+# Need to handle case where other bluetooth device plugged in
+# The output of acpi is as follows when the PS4 controller is connected
+# Battery 0: Discharging, 0%, rate information unavailable
+# Battery 1: Discharging, 57%, 02:28:07 remaining
+
+PWR=$(acpi | awk '$0 !~ /unavailable/')
+BAT=$(echo $PWR | awk -F " " '{print $4}' | sed -e 's/\%\,//g')
+CHARGING=$(echo $PWR | awk -F " " '{print $3}' | sed -e 's/\,//g')
+
+# special case where BAT is 100%
+BAT=$(echo $BAT | sed -e 's/\%//g')
+
+CHGICO=""
+BAT100=""
+BAT75=""
+BAT50=""
+BAT25=""
+BATZ=""
+
+# 0 - 15 - Z
+# 16 - 35 - 25
+# 36 - 65 - 50
+# 66 - 85 - 75
+# 86 - 100 - 100
+
+if [ "Charging" = $CHARGING ]; then
+	ICON=$CHGICO
+elif [ "Full" = $CHARGING ]; then
+	ICON=$CHGICO
+elif [ $BAT -gt 85 ]; then
+	ICON=$BAT100
+elif [ $BAT -gt 65 ]; then
+	ICON=$BAT75
+elif [ $BAT -gt 35 ]; then
+	ICON=$BAT50
+elif [ $BAT -gt 15 ]; then
+	ICON=$BAT25
+else
+	ICON=$BATZ
+fi
+
+echo "$ICON $BAT%"
+
+
+

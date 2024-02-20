@@ -1,0 +1,7 @@
+#!/bin/bash
+
+THEME=$(cat $HOME/.curwall | awk -F "." '{print $1}')
+
+cp $HOME/.Xresources $HOME/.themes/$THEME
+sed -i '/font/d' $HOME/.themes/$THEME
+

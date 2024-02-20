@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export SUDO_ASKPASS=$HOME/.local/bin/dpass
+
+WIFILIST=$(nmcli device wifi | awk -F " " '{if ($1 == "*") print $3; else print $2}')
+
+DMENUOPT=""
+for i in $(echo $WIFILIST); do DMENUOPT="$DMENUOPT\n$i"; done
+
+CHOICE=$(echo -e $DMENUOPT | dmenu)
+
+sudo -A nmcli c up $CHOICE --ask

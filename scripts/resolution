@@ -1,0 +1,30 @@
+#!/bin/bash
+
+
+
+RESPATH=$HOME/.screenlayout
+
+if [[ -z "$1" ]]; then
+  CHOICE=$(/usr/bin/ls $RESPATH | dmenu)
+else
+  CHOICE=$1
+fi
+
+if [ $CHOICE ]; then
+  sh $RESPATH/$CHOICE
+  nitrogen --restore
+
+  if [[ "$CHOICE" == *"Hi"* ]]; then
+    cp $HOME/Wallpaper/lockscreen/lockhi.xpm $HOME/.config/slock/lock.xpm
+  #  sed -i 's/[0-9][0-9]/16/' $HOME/.Xfont
+  elif [[ "$CHOICE" == *"Med"* ]]; then
+    cp $HOME/Wallpaper/lockscreen/lockmed.xpm $HOME/.config/slock/lock.xpm
+  #  sed -i 's/[0-9][0-9]/12/' $HOME/.Xfont
+  else
+    cp $HOME/Wallpaper/lockscreen/locklow.xpm $HOME/.config/slock/lock.xpm
+  #  sed -i 's/[0-9][0-9]/10/' $HOME/.Xfont
+  fi
+  wallpaper $(cat $HOME/.curwall)
+  touch $HOME/.rebootok
+fi
+

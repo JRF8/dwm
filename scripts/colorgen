@@ -1,0 +1,44 @@
+#!/bin/bash
+
+function main {
+  rm $HOME/.Xresources
+  THEME=$(echo $1 | awk -F "." '{print $1}')
+  if test -f $HOME/.themes/$THEME; then
+    cp $HOME/.themes/$THEME $HOME/.Xresources
+    cat $HOME/.Xfont >> ~/.Xresources
+  else
+    genxresources
+  fi
+  dunst_theme
+}
+
+function genxresources
+{
+  COLORLIST=$(cat .cache/wal/colors.Xresources | grep -G *color | sed -e 's/\*//g')
+  DFT=$(cat .cache/wal/colors.Xresources | grep -G UXTerm | sed -e 's/UXTerm\*//g')
+  
+  COLORLIST=$(printf "$DFT\n$COLORLIST\n")
+
+  DWMXRES=$(echo "$COLORLIST" | awk '{print "dwm."$0}')
+  STXRES=$(echo "$COLORLIST" | awk '{print "st."$0}')
+  DMENUXRES=$(echo "$COLORLIST" | awk '{print "dmenu."$0}')
+  
+  
+  echo "$DWMXRES" >> ~/.Xresources
+  echo "$STXRES" >> ~/.Xresources
+  echo "$DMENUXRES" >> ~/.Xresources
+  cat $HOME/.Xfont >> ~/.Xresources
+  
+}
+
+function dunst_theme
+{
+  BKG=$(cat ~/.Xresources | awk -F " " '$1 == "dwm.color0:" {print $2}')
+  FGD=$(cat ~/.Xresources | awk -F " " '$1 == "dwm.color1:" {print $2}')
+  
+  ~/.local/awkscript/dunsttheme.awk $HOME/.config/dunst/dunstrc \"$BKG\" \"$FGD\" > /tmp/dunstrc 2>/dev/null
+  mv /tmp/dunstrc $HOME/.config/dunst/dunstrc
+
+}
+
+main $1

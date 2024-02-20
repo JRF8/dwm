@@ -1,0 +1,29 @@
+#!/bin/bash
+
+IMGPATH=$HOME/Wallpaper
+
+if [ -z "$1" ]; then
+  CHOICE=$(/usr/bin/ls $IMGPATH | dmenu)
+else
+  CHOICE=$1
+fi
+
+if [ $CHOICE ]; then
+  nitrogen --save --set-zoom-fill --head=0 $IMGPATH/$CHOICE
+  nitrogen --save --set-zoom-fill --head=1 $IMGPATH/$CHOICE
+  nitrogen --save --set-zoom-fill --head=2 $IMGPATH/$CHOICE
+  
+  wal -i $IMGPATH/$CHOICE -nqste
+  
+  colorgen $CHOICE
+  
+  xrdb -merge $HOME/.Xresources
+
+  echo $CHOICE > $HOME/.curwall
+  
+  killall dwm
+  pidof st | xargs kill -s USR1
+
+  killall dunst
+  nohup dunst &
+fi

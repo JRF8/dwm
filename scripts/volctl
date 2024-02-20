@@ -1,0 +1,69 @@
+#!/bin/sh
+
+# Global Initialization
+CMD=""
+OPER=""
+SINK=""
+VOL=""
+MUTED=""
+
+function setup_vars {
+	SINK=$(pactl get-default-sink)
+	VOL=`get_vol`
+	MUTED=`get_mute`
+}
+
+function get_vol {
+	pactl get-sink-volume $SINK | awk -F '/' '{print $2}' | sed -e 's/ //g' | sed -e 's/\%//g'
+}
+
+function get_mute {
+	pactl get-sink-mute $SINK | awk -F " " '{print $2}'
+}
+
+function command_parse {
+#first, let's unmute if we are hitting one of the volume keys
+	if [ $1 -gt 2 ]; then
+		:
+	elif [ $MUTED = "no" ]; then
+		:
+	else 
+		pactl set-sink-mute $SINK toggle
+	fi
+	if [ $1 -eq 1 ]; then
+		CMD="set-sink-volume"
+		OPER="-5%"
+	elif [ $1 -eq 2 ]; then
+		if [ $VOL -gt 95 ]; then
+			CMD=""
+		else
+			CMD="set-sink-volume"
+			OPER="+5%"
+		fi
+	else
+		CMD="set-sink-mute"
+		OPER="toggle"
+	fi
+}
+
+
+function status_bar {
+	# now let's set the status bar	
+	VOL=`get_vol`
+	MUTED=`get_mute`
+	MUTE_STR=$([ $MUTED = "no" ] && echo Volume || echo Muted)	
+	dunstify "$MUTE_STR" -h int:value:$VOL -r 5555
+	# depends: libcanberra
+	# line from: https://wiki.archlinux.org/title/Dunst#Installation
+	# Play the volume changed sound
+	canberra-gtk-play -i audio-volume-change -d "changeVolume"
+}
+
+function main {
+	setup_vars
+	command_parse $1	
+	pactl $CMD $SINK $OPER
+	status_bar
+}
+
+main $1

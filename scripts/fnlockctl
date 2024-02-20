@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# this is simply a wrapper script for my fnlockctl
+
+/usr/local/bin/fnlockctl
+
+FNCTLPATH="/sys/module/hid_apple/parameters/fnmode"
+FNCTLSTATUS=$(cat $FNCTLPATH)
+
+# FNLK letters of alphabet: 6-14-12-11
+# that will be the notify-send job id
+if [ $FNCTLSTATUS -eq 1 ]; then
+	notify-send "Function Lock Disabled" -r 6141211
+else
+	notify-send "Function Lock Enabled" -r 6141211
+fi
