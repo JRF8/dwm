@@ -3,7 +3,7 @@
 IMGPATH=$HOME/Wallpaper
 
 if [ -z "$1" ]; then
-  CHOICE=$(/usr/bin/ls $IMGPATH | dmenu)
+  CHOICE=$(ls $IMGPATH | dmenu)
 else
   CHOICE=$1
 fi
