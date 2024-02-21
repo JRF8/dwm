@@ -1,0 +1,24 @@
+SINK=$(pactl get-default-sink)
+
+
+ONSYM=""
+MUTESYM=""
+BLUESYM=""
+
+VOL=$(pactl get-sink-volume $SINK | awk -F '/' '{print $2}' | sed -e 's/ //g')
+MUTESTATUS=$(pactl get-sink-mute $SINK | awk -F ':' '{print $2}' | sed -e 's/ //g')
+
+if [ "yes" = "$MUTESTATUS" ]; then
+	VOLSYM=$MUTESYM
+else
+	VOLSYM=$ONSYM
+fi
+
+if grep -q "bluez" <<< $SINK; then
+	OUT="$BLUESYM $VOLSYM"
+else
+	OUT="$VOLSYM"
+fi
+
+echo "$OUT $VOL"
+
