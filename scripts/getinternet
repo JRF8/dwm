@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WIFI=$(nmcli connection show | grep wlp3s0 | awk '$0 !~ "DEVICE" {print $1}')
+WIFI=$(nmcli connection show | grep wlp | awk '$0 !~ "DEVICE" {print $1}')
 MASK=$(grep $WIFI .wifimask | awk -F " " '{print $2}')
 
 if [ $MASK ]; then
