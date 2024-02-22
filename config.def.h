@@ -44,7 +44,7 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "󰗃", "󰍹", "", "", "", "?"};
+static const char *tags[] = { "", "", "", "", "", "", "", "", "?"};
 
 /* Lockfile */
 static char lockfile[] = "/tmp/dwm.lock";
