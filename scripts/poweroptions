@@ -8,13 +8,13 @@ if [ "$OPTION" == "shutdown" ]; then
   CONFIRM=$(echo -e "yes\nno" | dmenu -p "Shutting down.. Are you sure?")
   if [ "$CONFIRM" == "yes" ]; then
     touch $HOME/.rebootok
-    sudo -A /usr/bin/shutdown now
+    sudo -A shutdown now
   fi
 elif [ "$OPTION" == "reboot" ]; then
   CONFIRM=$(echo -e "yes\nno" | dmenu -p "Rebooting.. Are you sure?")
   if [ "$CONFIRM" == "yes" ]; then
     touch $HOME/.rebootok
-    sudo -A /usr/bin/reboot
+    sudo -A reboot
   fi
 elif [ "$OPTION" == "logout" ]; then
   CONFIRM=$(echo -e "yes\nno" | dmenu -p "Logging out.. Are you sure?")
