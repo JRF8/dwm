@@ -2,7 +2,7 @@
 
 # this is simply a wrapper script for my fnlockctl
 
-/usr/local/bin/fnlockctl
+fnlock
 
 FNCTLPATH="/sys/module/hid_apple/parameters/fnmode"
 FNCTLSTATUS=$(cat $FNCTLPATH)
