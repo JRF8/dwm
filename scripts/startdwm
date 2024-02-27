@@ -9,8 +9,7 @@ fusuma &
 syncthing &
 udiskie &
 mbpfan &
-
-
+gentoo-pipewire-launcher restart &
 
 xrdb -merge .Xresources
 
@@ -20,8 +19,8 @@ xrdb -merge .Xresources
 
 nitrogen --restore
 
-xmodmap .xmodmap
-
+#xmodmap .xmodmap
+setxkbmap -option caps:escape
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 export AWT_TOOLKIT=MToolkit
