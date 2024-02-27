@@ -137,6 +137,7 @@ static const char *screensavecmd[] = {"screenclip", "SAVE", NULL };
 static const char *mutecmd[] = { "volctl", "3", NULL };
 static const char *volupcmd[] = { "volctl", "2", NULL };
 static const char *voldowncmd[] = { "volctl", "1", NULL };
+static const char *ejectcmd[] = { "eject", NULL };
 /* Control Media Players */
 static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
 static const char *mednextcmd[] = { "playerctl", "next", NULL };
@@ -253,6 +254,7 @@ static const Key keys[] = {
   { 0,                XF86XK_AudioMute,        spawn,        {.v = mutecmd } },
   { 0,                XF86XK_AudioLowerVolume, spawn,        {.v = voldowncmd } },
   { 0,                XF86XK_AudioRaiseVolume, spawn,        {.v = volupcmd } },
+  { 0,                XF86XK_Eject, spawn,        {.v = ejectcmd } },
 /* Keybindings for Media play/pause/next/previous */
   { 0,		      XF86XK_AudioPlay,        spawn,        {.v = medplaypausecmd } },
   { 0,                XF86XK_AudioNext,        spawn,        {.v = mednextcmd } },
