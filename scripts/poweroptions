@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export SUDO_ASKPASS=$HOME/.local/bin/dpass
+#export SUDO_ASKPASS=$HOME/.local/bin/dpass
 
 OPTION=$(echo -e "shutdown\nreboot\nlogout\nlock\nsuspend" | dmenu -p "Power Options:")
 
@@ -8,13 +8,13 @@ if [ "$OPTION" == "shutdown" ]; then
   CONFIRM=$(echo -e "yes\nno" | dmenu -p "Shutting down.. Are you sure?")
   if [ "$CONFIRM" == "yes" ]; then
     touch $HOME/.rebootok
-    sudo -A shutdown now
+    doas shutdown -h now
   fi
 elif [ "$OPTION" == "reboot" ]; then
   CONFIRM=$(echo -e "yes\nno" | dmenu -p "Rebooting.. Are you sure?")
   if [ "$CONFIRM" == "yes" ]; then
     touch $HOME/.rebootok
-    sudo -A reboot
+    doas reboot
   fi
 elif [ "$OPTION" == "logout" ]; then
   CONFIRM=$(echo -e "yes\nno" | dmenu -p "Logging out.. Are you sure?")
@@ -26,7 +26,7 @@ elif [ "$OPTION" == "suspend" ]; then
   CONFIRM=$(echo -e "yes\nno" | dmenu -p "Suspending.. Are you sure?")
   if [ "$CONFIRM" == "yes" ]; then
     touch $HOME/.rebootok
-    sudo systemctl suspend
+    doas systemctl suspend
   fi
 elif [ "$OPTION" == "lock" ]; then
   slock
