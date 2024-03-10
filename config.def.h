@@ -44,49 +44,51 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "?"};
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
 /* Lockfile */
 static char lockfile[] = "/tmp/dwm.lock";
 
-static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
-	/* class      		instance    title       tags mask     isfloating   monitor */
-	{ "firefox",  		"Navigator",       NULL,       1 << 1,       0,           -1 },
-	{ "Chromium",  		NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "Minitube", 		NULL,       NULL,       1 << 3,       0,           -1 },
-	{ "Freetube", 		NULL,       NULL,       1 << 3,       0,           -1 },
-	{ "Kodi", 		NULL,       NULL,       1 << 3,       0,           -1 },
-	{ "mpv", 		NULL,       NULL,       1 << 3,       0,           -1 },
-	{ "discord", 		NULL,       NULL,       1 << 5,       0,           -1 },
-	{ "Element", 		NULL,       NULL,       1 << 5,       0,           -1 },
-	{ "St",       		"st",       NULL,       1 << 0,       0,           -1 },
-	{ "code-oss", 		NULL,		NULL,		1 << 6,		  0,		   -1 },
-	{ "Signal", 		NULL,		NULL,		1 << 5,		  0,		   -1 },
-	{ "nuclear", 		NULL,		NULL,		1 << 3,		  0,		   -1 },
-	{ "Meld",		NULL,		NULL,		1 << 6,		  0,		   -1 },
-	{ "libreoffice",		NULL,		NULL,		1 << 6,		  0,		   -1 },
-	{ "Joplin",		NULL,		NULL,		1 << 6,		  0,		   -1 },
-	{ "org.remmina.Remmina", NULL,		NULL,		1 << 4,		  0,		   -1 },
-	{ "xfreerdp", NULL,		NULL,		1 << 4,		  1,		   0 },
-	{ "Surf",  		"surf",       NULL,       1 << 1,       0,           -1 },
-	{ "Vertcoin-Qt",  		NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "Lutris",  		NULL,       NULL,       1 << 7,       0,           -1 },
-	{ "Chiaki",  		NULL,       NULL,       1 << 7,       0,           -1 },
-	{ "explorer.exe",  		NULL,       NULL,       1 << 7,       0,           -1 },
-	{ "bisq.desktop.app.BisqApp",  		NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "QjackCtl",  		NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "Gimp",  		NULL,       NULL,       1 << 6,       0,           -1 },
-	{ "Brave-browser",  		"brave-browser",       NULL,       1 << 1,       0,           -1 },
-	{ "KeePassXC",  		NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "St",  		"spotify-tui",       NULL,       1 << 3,      0,           -1 },
-	{ NULL,		  "spterm",		NULL,		SPTAG(0),		1,			 -1 },
-	{ NULL,		  "thunar",		NULL,		SPTAG(1),		1,			 -1 },
-  { NULL,     "pavucontrol", NULL,   SPTAG(2),   1,  -1 },
-};
+#include "dwmrules.h"
+
+//static const Rule rules[] = {
+//	/* xprop(1):
+//	 *	WM_CLASS(STRING) = instance, class
+//	 *	WM_NAME(STRING) = title
+//	 */
+//	/* class      		instance    title       tags mask     isfloating   monitor */
+//	{ "firefox",  		"Navigator",       NULL,       1 << 1,       0,           -1 },
+//	{ "Chromium",  		NULL,       NULL,       1 << 1,       0,           -1 },
+//	{ "Minitube", 		NULL,       NULL,       1 << 3,       0,           -1 },
+//	{ "Freetube", 		NULL,       NULL,       1 << 3,       0,           -1 },
+//	{ "Kodi", 		NULL,       NULL,       1 << 3,       0,           -1 },
+//	{ "mpv", 		NULL,       NULL,       1 << 3,       0,           -1 },
+//	{ "discord", 		NULL,       NULL,       1 << 5,       0,           -1 },
+//	{ "Element", 		NULL,       NULL,       1 << 5,       0,           -1 },
+//	{ "St",       		"st",       NULL,       1 << 0,       0,           -1 },
+//	{ "code-oss", 		NULL,		NULL,		1 << 6,		  0,		   -1 },
+//	{ "Signal", 		NULL,		NULL,		1 << 5,		  0,		   -1 },
+//	{ "nuclear", 		NULL,		NULL,		1 << 3,		  0,		   -1 },
+//	{ "Meld",		NULL,		NULL,		1 << 6,		  0,		   -1 },
+//	{ "libreoffice",		NULL,		NULL,		1 << 6,		  0,		   -1 },
+//	{ "Joplin",		NULL,		NULL,		1 << 6,		  0,		   -1 },
+//	{ "org.remmina.Remmina", NULL,		NULL,		1 << 4,		  0,		   -1 },
+//	{ "xfreerdp", NULL,		NULL,		1 << 4,		  1,		   0 },
+//	{ "Surf",  		"surf",       NULL,       1 << 1,       0,           -1 },
+//	{ "Vertcoin-Qt",  		NULL,       NULL,       1 << 8,       0,           -1 },
+//	{ "Lutris",  		NULL,       NULL,       1 << 7,       0,           -1 },
+//	{ "Chiaki",  		NULL,       NULL,       1 << 7,       0,           -1 },
+//	{ "explorer.exe",  		NULL,       NULL,       1 << 7,       0,           -1 },
+//	{ "bisq.desktop.app.BisqApp",  		NULL,       NULL,       1 << 8,       0,           -1 },
+//	{ "QjackCtl",  		NULL,       NULL,       1 << 8,       0,           -1 },
+//	{ "Gimp",  		NULL,       NULL,       1 << 6,       0,           -1 },
+//	{ "Brave-browser",  		"brave-browser",       NULL,       1 << 1,       0,           -1 },
+//	{ "KeePassXC",  		NULL,       NULL,       1 << 2,       0,           -1 },
+//	{ "St",  		"spotify-tui",       NULL,       1 << 3,      0,           -1 },
+//	{ NULL,		  "spterm",		NULL,		SPTAG(0),		1,			 -1 },
+//	{ NULL,		  "thunar",		NULL,		SPTAG(1),		1,			 -1 },
+//  { NULL,     "pavucontrol", NULL,   SPTAG(2),   1,  -1 },
+//};
 
 /* layout(s) */
 static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
