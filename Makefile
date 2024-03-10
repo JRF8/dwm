@@ -11,8 +11,7 @@ RULEFILE=$(shell test -f /usr/include/dwmrules.h || echo missing)
 
 pre-build:
 ifeq (${RULEFILE}, missing)
-	cp ./dwmrules-template.h /usr/include/dwmrules.h && \
-	ln -s /usr/include/dwmrules.h ./dwmrules.h
+	cp ./dwmrules-template.h /usr/include/dwmrules.h
 endif
 
 all: pre-build options dwm
