@@ -1,4 +1,4 @@
- static const Rule rules[] = {
+ static Rule rules[] = {
  	/* xprop(1):
  	 *	WM_CLASS(STRING) = instance, class
  	 *	WM_NAME(STRING) = title
