@@ -7,11 +7,11 @@ SRC = drw.c dwm.c util.c
 OBJ = ${SRC:.c=.o}
 
 SCRIPTS=$(shell ls scripts)
-RULEFILE=$(shell test -f /usr/include/dwmrules.h || echo missing)
+RULEFILE=$(shell test -f /root/dwmrules.h || echo missing)
 
 pre-build:
 ifeq (${RULEFILE}, missing)
-	cp ./dwmrules-template.h /usr/include/dwmrules.h
+	cp ./dwmrules-template.h /root/dwmrules.h
 endif
 
 all: pre-build options dwm
