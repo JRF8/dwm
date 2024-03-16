@@ -49,9 +49,7 @@ static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 /* Lockfile */
 static char lockfile[] = "/tmp/dwm.lock";
 
-#include "/root/dwmrules.h"
-
-//static const Rule rules[] = {
+static const Rule rules[] = {
 //	/* xprop(1):
 //	 *	WM_CLASS(STRING) = instance, class
 //	 *	WM_NAME(STRING) = title
@@ -85,10 +83,10 @@ static char lockfile[] = "/tmp/dwm.lock";
 //	{ "Brave-browser",  		"brave-browser",       NULL,       1 << 1,       0,           -1 },
 //	{ "KeePassXC",  		NULL,       NULL,       1 << 2,       0,           -1 },
 //	{ "St",  		"spotify-tui",       NULL,       1 << 3,      0,           -1 },
-//	{ NULL,		  "spterm",		NULL,		SPTAG(0),		1,			 -1 },
+	{ NULL,		  "spterm",		NULL,		SPTAG(0),		1,			 -1 },
 //	{ NULL,		  "thunar",		NULL,		SPTAG(1),		1,			 -1 },
 //  { NULL,     "pavucontrol", NULL,   SPTAG(2),   1,  -1 },
-//};
+};
 
 /* layout(s) */
 static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
